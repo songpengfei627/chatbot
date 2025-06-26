@@ -23,7 +23,7 @@ body { font-family: Arial, sans-serif; background: #e5ddd5; margin: 0; }
   background-size: cover; background-position: center;
 }
 /* 更新为你的本地图片文件名或相对路径 */
-.avatar.bot { background-image: url('goods.png'); }
+.avatar.bot { background-image: url('bot.png'); }
 .avatar.user { background-image: url('user.png'); }
 
 .bubble {
