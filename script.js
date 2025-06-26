@@ -48,7 +48,7 @@ function getSessionId(){
 }
 
 function saveToBackend(text, stage) {
-  fetch('https://script.google.com/macros/s/AKfycby1lTRt6cso_DTSyrWauEjqXy9XxQ0BxhmOq9bXSUD7RxnIRAgKneWEWEChmZ6Rh4zZCw/exec', {
+  fetch('https://script.google.com/macros/s/AKfycbweIx96qxV5upHtbanWrpwCg0hjjaJYm6t8kZM0G86TcY_Q023v2guw6Nu2Povhi0621g/exec', {
     method: 'POST',
     mode: 'no-cors', // 一定要有
     body: new URLSearchParams({      // ✅ 使用 URL 编码，避免触发 JSON 预检
