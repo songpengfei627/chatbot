@@ -1,5 +1,4 @@
-
-// === Chatbot Script (with Google Sheet logging & no typing) ===
+// === Chatbot Script (No Google Sheet logging, no typing) ===
 
 // 1) DOM references
 const chatLog = document.getElementById('chat-log');
@@ -9,9 +8,6 @@ const sendBtn  = document.getElementById('send-btn');
 
 // 2) Dialogue stage counter
 let stage = 0;   // 0: first question, 1: recommend, ...
-
-// 3) Google Apps Script backend URL
-const BACKEND_URL = 'https://script.google.com/macros/s/AKfycbweIx96qxV5upHtbanWrpwCg0hjjaJYm6t8kZM0G86TcY_Q023v2guw6Nu2Povhi0621g/exec';
 
 // ---------- helper: chat bubble ----------
 function createMsg(text, sender){
@@ -34,29 +30,6 @@ function createMsg(text, sender){
   }
   chatLog.appendChild(wrap);
   chatLog.scrollTop = chatLog.scrollHeight;
-}
-
-// ---------- helper: session id & backend logging ----------
-function getSessionId(){
-  let sid = sessionStorage.getItem('chat_sid');
-  if(!sid){
-    sid = (crypto.randomUUID ? crypto.randomUUID() :
-           Date.now().toString(36)+Math.random().toString(36).substring(2));
-    sessionStorage.setItem('chat_sid', sid);
-  }
-  return sid;
-}
-
-function saveToBackend(text, stage) {
-  fetch('https://script.google.com/macros/s/AKfycbweIx96qxV5upHtbanWrpwCg0hjjaJYm6t8kZM0G86TcY_Q023v2guw6Nu2Povhi0621g/exec', {
-    method: 'POST',
-    mode: 'no-cors', // 一定要有
-    body: new URLSearchParams({      // ✅ 使用 URL 编码，避免触发 JSON 预检
-      session: getSessionId(),       // 你已有的 session id
-      stage: stage,
-      text: text
-    })
-  }).catch(err => console.error('log error', err));
 }
 
 // ---------- Init ----------
@@ -101,7 +74,6 @@ function botRespond(){
   }else if(stage === 1){
     createMsg('亲，为您推荐以下产品：<br><b>「X-Lux 多功能智能台灯」</b><br>- 支持多段亮度与色温调节<br>- 搭载无线充电、时间显示与蓝牙音箱功能<br>- 外观简洁百搭，适合卧室、书桌、化妆台等多种空间<br>- 满足办公、阅读、放松等多种场景下的使用需求','bot');
 
-    // End message after 1s
     setTimeout(()=>{
       createMsg('🎉 感谢您的反馈，本轮对话已结束，请返回问卷继续作答。','bot');
     },1000);
@@ -114,14 +86,9 @@ function sendMessage(){
   const text = userInput.value.trim();
   if(!text) return;
 
-  // display
   createMsg(text,'user');
   userInput.value = '';
 
-  // save to sheet
-  saveToBackend(text, stage);
-
-  // bot reply after delay
   setTimeout(botRespond, 1000);
 }
 
