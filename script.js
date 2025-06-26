@@ -11,7 +11,7 @@ const sendBtn  = document.getElementById('send-btn');
 let stage = 0;   // 0: first question, 1: recommend, ...
 
 // 3) Google Apps Script backend URL
-const BACKEND_URL = 'https://script.google.com/macros/s/AKfycby1lTRt6cso_DTSyrWauEjqXy9XxQ0BxhmOq9bXSUD7RxnIRAgKneWEWEChmZ6Rh4zZCw/exec';
+const BACKEND_URL = 'https://script.google.com/macros/s/AKfycbweIx96qxV5upHtbanWrpwCg0hjjaJYm6t8kZM0G86TcY_Q023v2guw6Nu2Povhi0621g/exec';
 
 // ---------- helper: chat bubble ----------
 function createMsg(text, sender){
