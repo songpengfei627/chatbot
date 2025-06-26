@@ -47,16 +47,16 @@ function getSessionId(){
   return sid;
 }
 
-function saveToBackend(text, stageIdx){
-  fetch(BACKEND_URL,{
+function saveToBackend(text, stage) {
+  fetch('https://script.google.com/macros/s/AKfycby1lTRt6cso_DTSyrWauEjqXy9XxQ0BxhmOq9bXSUD7RxnIRAgKneWEWEChmZ6Rh4zZCw/exec', {
     method: 'POST',
-    headers:{'Content-Type':'application/json'},
-    body: JSON.stringify({
-      session: getSessionId(),
-      stage  : stageIdx,
-      text   : text
+    mode: 'no-cors', // 一定要有
+    body: new URLSearchParams({      // ✅ 使用 URL 编码，避免触发 JSON 预检
+      session: getSessionId(),       // 你已有的 session id
+      stage: stage,
+      text: text
     })
-  }).catch(err=>console.error('log error',err));
+  }).catch(err => console.error('log error', err));
 }
 
 // ---------- Init ----------
