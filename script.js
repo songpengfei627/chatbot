@@ -56,10 +56,15 @@ if(recognition){
 
 const botRespond = () => {
   if(stage === 0){
-    createMsg('您好，可以方便了解下您的购买需求吗？比如：需要有线/无线，是否需要带有RGB功能，或者其他需求等，我来为您推荐合适的哦。', 'bot');
-  } else {
-    createMsg('亲，为您推荐以下商品：<br>1. 有线RGB电竞耳机<br>2. 无线降噪耳机<br>3. 蓝牙运动耳机<br><br>', 'bot');
+    createMsg('您好，可以了解一下您对台灯的需求吗？比如：<br>- 使用场景？<br>- 亮度要求？<br>- 是否偏好极简/可爱/复古等外观风格？<br>告诉我您的偏好，我来为您推荐合适的台灯哦！', 'bot');
+  } else if(stage === 1){
+    createMsg('亲，为您推荐以下产品：<br><b>「X-Lux 多功能智能台灯」</b><br>- 支持多段亮度与色温调节<br>- 搭载无线充电、时间显示与蓝牙音箱功能<br>- 外观简洁百搭，适合卧室、书桌、化妆台等多种空间<br>- 满足办公、阅读、放松等多种场景下的使用需求', 'bot');
+
+    setTimeout(() => {
+      createMsg('🎉 感谢您的反馈，本轮对话已结束，请返回问卷继续作答。', 'bot');
+    }, 1000);
   }
+
   stage++;
 };
 
@@ -68,7 +73,7 @@ const sendMessage = () => {
   if(!text) return;
   createMsg(text, 'user');
   userInput.value = '';
-  setTimeout(botRespond, 600);
+  setTimeout(botRespond, 1000);
 };
 
 sendBtn.onclick = sendMessage;
