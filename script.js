@@ -28,7 +28,11 @@ const createMsg = (text, sender) => {
 };
 
 window.onload = () => {
+  // 首句问候
   createMsg('我是您的智能客服，很高兴为您服务。', 'bot');
+  // 禁用手动打字输入
+  userInput.readOnly = true;                       // 输入框只读
+  userInput.addEventListener('keydown', e => e.preventDefault()); // 拦截按键
 };
 
 // Speech Recognition
