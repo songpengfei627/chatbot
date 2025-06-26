@@ -5,14 +5,19 @@ html, body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   background: #e5ddd5;
   font-size: 16px;
+  overscroll-behavior-y: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 #chat-container {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  max-width: 480px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   background: #fff;
+  box-shadow: 0 0 12px rgba(0,0,0,0.1);
 }
 
 #chat-header {
@@ -150,3 +155,4 @@ html, body {
     font-size: 22px;
   }
 }
+
