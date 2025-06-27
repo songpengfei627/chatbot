@@ -34,7 +34,7 @@ function createMsg(text, sender){
 
 // ---------- Init ----------
 window.onload = ()=>{
-  createMsg('我是您的智能客服，很高兴为您服务。这里有什么可以帮到您的？例如，让我帮您推荐一款台灯？','bot');
+  createMsg('我是您的智能客服，很高兴为您服务。这里有什么可以帮到您的？例如，您可以输入“推荐一款台灯。','bot');
 
   // disable manual typing
   userInput.readOnly = true;
